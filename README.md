@@ -37,7 +37,7 @@ Googleアカウントを選択し、認可を進める。
 認可用のコードが表示されるので、コピーして所定の場所に入力する。
 
 ### clasp create
-https://drive.google.com/drive/folders/{GoogleDriveのフォルダID}
+`https://drive.google.com/drive/folders/{GoogleDriveのフォルダID}`
 にGASファイルを作成する。
 ```
 clasp create --title notion-db-to-spreadsheet --parentId {GoogleDriveのフォルダID} --rootDir ./
@@ -53,6 +53,9 @@ npm init
 npm install @types/google-apps-script
 ```
 `@types/google-apps-script`はコーディング時にGASの関数を表示してくれるようになるパッケージ。
+
+### 環境変数の設定
+GASファイルのプロジェクトの設定から、スクリプトプロパティとして登録。
 
 ## Command
 
