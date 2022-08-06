@@ -1,4 +1,7 @@
 # notion-db-to-spreadsheet
+
+[![clasp](https://img.shields.io/badge/built%20with-clasp-4285f4.svg)](https://github.com/google/clasp)
+
 NotionDBからスプレッドシートにデータを連携する。
 
 ## Setup
@@ -57,6 +60,14 @@ npm install @types/google-apps-script
 ### 環境変数の設定
 GASファイルのプロジェクトの設定から、スクリプトプロパティとして登録。
 
+| プロパティ名 | 内容 |
+| ------------ | - |
+| NOTION_DB_ID | NotionDBのID <br> `https://www.notion.so/{workspace name}/{NOTION_DB_ID}?v=...` |
+| NOTION_TOKEN | NotionAPIのトークン |
+| SHEET_ID     | スプレッドシートのID <br> `https://docs.google.com/spreadsheets/d/{SHEET_ID}/edit#gid=...` |
+| SHEET_NAME   | シート名 |
+| PROPERTIES   | NotionDBから取得するプロパティ名をカンマ区切りで指定する <br> 例: `Name,Tags` |
+
 ## Command
 
 ### コンテナ一覧（状態を確認）
@@ -70,7 +81,7 @@ docker-compose stop
 ```
 
 ### clasp push
-コンテナの外から実行。
+コンテナが起動している状態で、コンテナの外から実行。
 ```
 docker-compose exec gas-build bash -c "clasp push"
 ```
