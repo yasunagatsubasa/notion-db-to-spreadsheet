@@ -34,14 +34,26 @@ function json2Array(){
 
     for(const col of columns){
       const property = properties[col]
+      const type = property["type"]
 
-      if(property["type"] == "title"){
+      if (type == "title") {
         tmp.push(getTitle(property["title"]))
+
+      } else if (type == "date") {
+        const date = property["date"]
+        tmp.push( (date) ? date["start"] : date )
+
+      } else if (type == "multi_select") {
+        tmp.push(getMultiSelect(property["multi_select"]))
+
+      } else if (type == "people") {
+        tmp.push(getPeople(property["people"]))
+
       } else {
         tmp.push("not supported property type")
       }
     }
-    
+
     array.push(tmp)
   }
 
@@ -55,6 +67,22 @@ function getTitle(title_array){
     array.push(s["plain_text"])
   }
   return array.join("")
+}
+
+function getMultiSelect(multi_select_array){
+  var array = []
+  for(const x of multi_select_array){
+    array.push(x["name"])
+  }
+  return array.join(",")
+}
+
+function getPeople(people_array){
+  var array = []
+  for(const x of people_array){
+    array.push(x["name"])
+  }
+  return array.join(",")
 }
 
 function writeSpreadSheet(): void {
